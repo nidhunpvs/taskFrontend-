@@ -1,0 +1,61 @@
+<section class="statistic statistic2">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-lg-3"  *ngIf="roleDetails.roleId=='2'" >
+              <h2>Customer complaint form</h2>
+        
+            <form #getcomplaint="ngForm" (ngSubmit)="getComplain(getcomplaint.value)">
+                <input type="text" class="form-control" #titile="ngModel" 
+                 name="titile" placeholder="title here" required
+                ngModel>
+                <div class="error" *ngIf="titile?.errors && (titile?.touched || titile?.dirty)">
+                  <span class="error" [hidden]="!titile.errors.required"> Please enter your title. </span>
+                </div>
+                <input type="text" class="form-control" #description="ngModel" name="description"
+                placeholder="description here" required ngModel>
+                <div class="error" *ngIf="description.errors && (description.touched || description.dirty)">
+                  <span class="error" [hidden]="!password.errors.required"> Please enter your description. </span>
+                </div>
+                <button class="btn btn-block btn-success" [disabled]="!getcomplaint.form.valid"  type="submit"> Submit
+                </button>
+              </form>
+          </div>
+          <div class="col-md-6 col-lg-3" *ngIf="roleDetails.roleId=='1'">
+              <button class="btn btn-block btn-success" *ngIf="!comliantData" (click)="GetComplaint()" type="submit"> view customer complaint
+                </button>
+<div class="container" *ngIf="comliantData" >
+        <h2>customer complaints           
+          </h2>
+          <table class="table" >
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>email</th>
+                  <th>phone</th>
+                  <th>title</th>
+                  <th>complaint</th>
+                  <th>Action</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of comliantData; let i = index;">
+                  <td>{{item.firstname}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.phone}}</td>
+                  <td>{{item.titile}}</td>
+                  <td>{{item.description}}</td>
+                  <td><button class="btn btn-block btn-success"  type="submit"> dismiss
+                    </button></td>
+
+                </tr>
+             
+              </tbody>
+            </table>
+      </div>
+          </div>
+         
+     
+      </div>
+  </div>
+</section>

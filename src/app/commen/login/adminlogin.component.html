@@ -1,0 +1,67 @@
+<div class="vid-container"   >
+  
+  
+    <div class="inner-container">
+     
+      <div class="box" *ngIf="hidebox" style="overflow: scroll">
+        <h1><b>Signup</b></h1>
+
+        <form #signup="ngForm" (ngSubmit)="signUpform(signup.value)">
+            <input type="email" class="form-control" #firstname="ngModel" 
+           name="firstname" placeholder="name" required
+            ngModel>
+            <div class="error" *ngIf="firstname?.errors && (firstname?.touched || firstname?.dirty)">
+              <span class="error" [hidden]="!firstname.errors.required"> Please enter your name. </span>
+            </div>
+          <input type="email" class="form-control" #email="ngModel" id="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required
+          ngModel>
+          <div class="error" *ngIf="email?.errors && (email?.touched || email?.dirty)">
+            <span class="error" [hidden]="!email.errors.required"> Please enter your name. </span>
+            <span class="error" [hidden]="!email.errors.pattern"> Please enter valid email. </span>
+          </div>
+          <input type="number" class="form-control" #phone="ngModel" id="phone" name="phone"
+          placeholder="phone" required ngModel>
+          <div class="error" *ngIf="phone.errors && (phone.touched || phone.dirty)">
+            <span class="error" [hidden]="!phone.errors.required"> Please enter your phone. </span>
+          </div>
+          <input type="password" class="form-control" #password="ngModel" id="password" name="password"
+          placeholder="Password" required ngModel>
+          <div class="error" *ngIf="password.errors && (password.touched || password.dirty)">
+            <span class="error" [hidden]="!password.errors.required"> Please enter your password. </span>
+          </div>
+          <select align="center" class='select-option ' required #role="ngModel" name="role" (ngModelChange)='onOptionsSelected($event)' ngModel>
+              <option class='option' *ngFor='let option of options' [value]="option.name">{{option.name}}</option>
+          </select>
+          <button class="btn btn-block btn-success" [disabled]="!signup.form.valid"  type="submit"> SignUp
+          </button>
+        </form>
+        <button class="btn btn-block btn-success" (click)="myBox()" type="submit"> Login
+
+        </button>      </div>
+          
+      <div class="box" *ngIf="!hidebox">
+        <h1><b>Login</b></h1>
+        <form #loginForm="ngForm" (ngSubmit)="Submitlogin(loginForm.value)">
+          <input type="email" class="form-control" #email="ngModel" id="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required
+          ngModel>
+          <div class="error" *ngIf="email?.errors && (email?.touched || email?.dirty)">
+            <span class="error" [hidden]="!email.errors.required"> Please enter your name. </span>
+            <span class="error" [hidden]="!email.errors.pattern"> Please enter valid email. </span>
+          </div>
+          <input type="password" class="form-control" #password="ngModel" id="password" name="password"
+          placeholder="Password" required ngModel>
+          <div class="error" *ngIf="password.errors && (password.touched || password.dirty)">
+            <span class="error" [hidden]="!password.errors.required"> Please enter your password. </span>
+          </div>
+          <button class="btn btn-block btn-success" [disabled]="!loginForm.form.valid"  type="submit"> Login
+          </button>
+        </form>
+        <button class="btn btn-block btn-success" (click)="myBox()" type="submit"> SignUp
+        </button>
+      </div>
+
+    </div>
+  </div>
+  
